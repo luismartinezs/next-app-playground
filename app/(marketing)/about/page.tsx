@@ -1,4 +1,14 @@
+async function createItem(formData: FormData) {
+  const id = Math.random();
+  return id;
+}
+
 export default function AboutPage() {
+  async function create(formData: FormData) {
+    "use server";
+    const id = await createItem(formData);
+    console.log(id);
+  }
   return (
     <div>
       <h3>About</h3>
@@ -11,6 +21,10 @@ export default function AboutPage() {
         This also helps to use different layouts for different &ldquo;sibling
         routes&ldquo;
       </p>
+      <form action={create}>
+        <input type="text" name="name" />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 }
